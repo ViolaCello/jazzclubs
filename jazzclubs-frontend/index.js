@@ -25,13 +25,14 @@ createNewVenueButton.addEventListener("click", function(e) {
       <form id="createvenue" action="#" data-action="create">
         <div class="input-field">
         <label for="venue">Venue Name</label>
-          <input type="text" name="venue" id="venue">
+          <textarea name="venue" id="venue"></textarea>
+         
           
         </div>
 
         <div class="input-field">
         <label for="nexttime">Neighborhood</label>
-          <input type="text" name="nexttime" id="nexttime">
+          <textarea name="nexttime" id="nexttime"></textarea>
          
         </div>
 
@@ -113,9 +114,6 @@ let configObj = {
 };
  
 fetch("http://localhost:3000/clubs", configObj)
-  .then(function(response) {
-    return response.json();
-  })
   .then(res => res.json())
     .then((obj_club) => {
       let new_club = renderClubs(obj_club)

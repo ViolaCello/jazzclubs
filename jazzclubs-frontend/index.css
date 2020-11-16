@@ -48,3 +48,22 @@ body, html {
   float: center;
   margin-top: 30px;
 } 
+
+.input-field {
+  padding: 10px;
+  margin:10px 0; 
+  border: 2px solid #eee;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;
+  width:75%;
+}
+
+textarea {
+  width:50%;
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  
+} 

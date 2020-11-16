@@ -1,0 +1,8 @@
+To Do Tuesday:
+-- new Club in ClubsController (club Params, etc)
+-- Render Clubs on opening
+-- Render Comments in Clubs SHow page
+-- Add Comments to Club (create form, ReviewsController)
+-- Edit Club
+-- Edit Comments
+-- Average Rating Feature per club
