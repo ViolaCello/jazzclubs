@@ -24,9 +24,18 @@ console.log("testing...")
         </div>
 
         <div class="input-field">
-        <input type="integer" name="rating" id="rating">
-        <label for="rating">Rating (5 = best) </label>
+        <input type="text" name="comment" id="comment">
+        <label for="comment">Comment </label>
+        </div>
+
+        <div class="input-field">Rating (5 = best)
+        <label for="rating"><input type="radio" id="rating" name="rating" value="1" />1</label>
+        <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
+        <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
+        <label><input type="radio" id="rating" name="rating" value="4" />4</label>
+        <label><input type="radio" id="rating" name="rating" value="5" />5</label>
         
+
         </div>
 
         <input id="submit" type="submit" value="Create Venue" class="button2">
@@ -42,7 +51,8 @@ function toDisplayForm() {
 
 createVenueFormButton.addEventListener("click", function(e) {
   e.preventDefault()
-  console.log(venue.value, nexttime.value, rating.value)
+  // console.log(venue.value, nexttime.value, comment.value, rating[0].checked===true)  
+  whichRadioButtonWasSelected(rating)
   
   }
   )
@@ -58,10 +68,9 @@ createNewVenueButton.addEventListener("click", function(e) {
   }
   )
 
-// const createVenueFormButton = document.querySelector("#submit");
-
-// createVenueFormButton.addEventListener("click", function(e) {
-//   e.preventDefault()
-//   console.log(e)
-//   }
-//   )
+function whichRadioButtonWasSelected(rating) {
+  for(i = 0; i < rating.length; i++) { 
+    if(rating[i].checked) 
+    console.log(rating[i].value)
+}
+}
