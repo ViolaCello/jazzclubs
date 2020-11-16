@@ -10,22 +10,47 @@ console.log("testing...")
 //     );
 
 
+const rightPage = document.querySelector(".column2")
+// get Form to add a Venue
+const createNewVenueButton = document.querySelector(".button1");
+
+createNewVenueButton.addEventListener("click", function(e) {
+  e.preventDefault()
+  toDisplayForm()
+  }
+  )
+
 
     const displayForm = `
       <form id="createvenue" action="#" data-action="create">
         <div class="input-field">
+        <label for="venue">Venue Name</label>
           <input type="text" name="venue" id="venue">
-          <label for="venue">Venue Name</label>
+          
         </div>
 
         <div class="input-field">
+        <label for="nexttime">Neighborhood</label>
           <input type="text" name="nexttime" id="nexttime">
-          <label for="nexttime">Neighborhood</label>
+         
         </div>
 
         <div class="input-field">
-        <input type="text" name="comment" id="comment">
+        <label for="cover">Average Cover Charge $</label>
+        <input type="number" name="cover" id="cover" min="0" max="300" step="5" value="25">
+        
+      </div>
+
+      <div class="input-field">
+      <label for="website">Club website: </label>
+      <input type="url" name="website" id="website">
+      
+    </div>
+
+        <div class="input-field">
         <label for="comment">Comment </label>
+        <input type="text" name="comment" id="comment">
+        
         </div>
 
         <div class="input-field">Rating (5 = best)
@@ -45,31 +70,27 @@ console.log("testing...")
 
 function toDisplayForm() {
   let loc = document.querySelector(".column1")
-  loc.innerHTML = displayForm
+  loc.innerHTML = displayForm 
 
   const createVenueFormButton = document.querySelector("#submit");
-
-createVenueFormButton.addEventListener("click", function(e) {
+  createVenueFormButton.addEventListener("click", function(e) {
   e.preventDefault()
-  // console.log(venue.value, nexttime.value, comment.value, rating[0].checked===true)  
+  let formData = {}
+ 
     let stars = whichRadioButtonWasSelected(rating)
     let venueName = venue.value
-    let venueLocation = nexttime.value
+    let  venueLocation = nexttime.value
     let venueComment = comment.value
-    console.log(stars, venueName, venueLocation, venueComment)
-  }
+    let venueCover = cover.value
+    let venueWebsite = website.value
+   //console.log(stars, venueName, venueLocation, venueComment)
+   Object.assign(formData, {name:venueName}, {location:venueLocation}, {cover:venueCover}, {website:venueWebsite})
+   console.log(formData)
+   sendFormInfo(formData)
+}
   )
 }
-
-
-// get Form to add a Venue
-const createNewVenueButton = document.querySelector(".button1");
-
-createNewVenueButton.addEventListener("click", function(e) {
-  e.preventDefault()
-  toDisplayForm()
-  }
-  )
+ 
 
 function whichRadioButtonWasSelected(rating) {
   for(i = 0; i < rating.length; i++) { 
@@ -78,3 +99,27 @@ function whichRadioButtonWasSelected(rating) {
    return rating[i].value
 }
 }
+
+
+// Post Form info to database
+function sendFormInfo(formData) {
+let configObj = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  body: JSON.stringify(formData)
+};
+ 
+fetch("http://localhost:3000/clubs", configObj)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(res => res.json())
+    .then((obj_club) => {
+      let new_club = renderClubs(obj_club)
+      rightPage.append(new_club)
+    })
+  }
+
