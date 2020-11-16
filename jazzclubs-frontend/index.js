@@ -52,8 +52,11 @@ function toDisplayForm() {
 createVenueFormButton.addEventListener("click", function(e) {
   e.preventDefault()
   // console.log(venue.value, nexttime.value, comment.value, rating[0].checked===true)  
-  whichRadioButtonWasSelected(rating)
-  
+    let stars = whichRadioButtonWasSelected(rating)
+    let venueName = venue.value
+    let venueLocation = nexttime.value
+    let venueComment = comment.value
+    console.log(stars, venueName, venueLocation, venueComment)
   }
   )
 }
@@ -71,6 +74,7 @@ createNewVenueButton.addEventListener("click", function(e) {
 function whichRadioButtonWasSelected(rating) {
   for(i = 0; i < rating.length; i++) { 
     if(rating[i].checked) 
-    console.log(rating[i].value)
+   // console.log(rating[i].value)
+   return rating[i].value
 }
 }
