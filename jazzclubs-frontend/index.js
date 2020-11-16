@@ -1,13 +1,13 @@
 console.log("testing...")
 
 // test that we can get data from the backend
-const BACKEND_URL = 'http://localhost:3000';
-fetch(`${BACKEND_URL}/clubs`)
-  .then(response => response.json())
-  .then(parsedResponse => 
+// const BACKEND_URL = 'http://localhost:3000';
+// fetch(`${BACKEND_URL}/clubs`)
+//   .then(response => response.json())
+//   .then(parsedResponse => 
     
-    console.log(parsedResponse[0].name, parsedResponse[0].id, parsedResponse[0].location)
-    );
+//     console.log(parsedResponse[0].name, parsedResponse[0].id, parsedResponse[0].location)
+//     );
 
 
 
@@ -29,7 +29,22 @@ fetch(`${BACKEND_URL}/clubs`)
         <div class="input-field">
         </div>
 
-        <input id="submit" type="submit" value="Create Venue" class="btn">
+        <input id="submit" type="submit" value="Create Venue" class="button2">
       </form>
     </div>
 `
+
+function toDisplayForm() {
+  let loc = document.querySelector(".column1")
+  loc.innerHTML = displayForm
+}
+
+
+// get Form to add a Venue
+const createNewVenueButton = document.querySelector(".button1");
+
+createNewVenueButton .addEventListener("click", function(e) {
+  e.preventDefault()
+  toDisplayForm()
+  }
+  )
