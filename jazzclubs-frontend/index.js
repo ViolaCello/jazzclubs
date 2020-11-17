@@ -9,7 +9,7 @@ console.log("testing...")
 //     console.log(parsedResponse[0].name, parsedResponse[0].id, parsedResponse[0].location)
 //     );
 
-
+const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 // get Form to add a Venue
 const createNewVenueButton = document.querySelector(".button1");
@@ -70,8 +70,8 @@ createNewVenueButton.addEventListener("click", function(e) {
 `
 
 function toDisplayForm() {
-  let loc = document.querySelector(".column1")
-  loc.innerHTML = displayForm 
+  
+  leftPage.innerHTML = displayForm 
 
   const createVenueFormButton = document.querySelector("#submit");
   createVenueFormButton.addEventListener("click", function(e) {
@@ -84,7 +84,6 @@ function toDisplayForm() {
     let venueComment = comment.value
     let venueCover = cover.value
     let venueWebsite = website.value
-   //console.log(stars, venueName, venueLocation, venueComment)
    Object.assign(formData, {name:venueName}, {location:venueLocation}, {cover:venueCover}, {website:venueWebsite})
    console.log(formData)
    sendFormInfo(formData)
@@ -118,6 +117,7 @@ fetch("http://localhost:3000/clubs", configObj)
     .then((obj_club) => {
       let new_club = renderClubs(obj_club)
       rightPage.innerHTML += new_club
+      clearForm()
     })
   }
 
@@ -132,4 +132,8 @@ function renderClubs(info) {
     
     </div>
   `
+}
+
+function clearForm() {
+  leftPage.innerHTML = ""
 }

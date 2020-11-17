@@ -8,7 +8,6 @@ end
 
 def create
     club = Club.new(club_params)
-    # byebug
     if club.save
       render json: club
     else
