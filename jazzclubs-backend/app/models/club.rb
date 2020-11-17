@@ -1,4 +1,7 @@
 class Club < ApplicationRecord
     has_many :reviews
-    validates :homepage, url: { allow_nil: true, allow_blank: true }
+    validates :website, url: { allow_nil: true, allow_blank: true }
+    validates :name, presence: true
+    validates :location, presence: true
+
 end

@@ -138,10 +138,16 @@ let configObj = {
 fetch("http://localhost:3000/clubs", configObj)
   .then(res => res.json())
     .then((obj_club) => {
+      if (obj_club.errors) {
+        throw new Error(obj_club.errors) 
+      }else{
+     
       let new_club = renderClubs(obj_club)
       
       clearForm()
+      }
     })
+    .catch(err => alert(err))
   }
 
 function renderClubs(info) {
