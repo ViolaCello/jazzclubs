@@ -8,3 +8,20 @@ To Do Tuesday:
 -- Average Rating Feature per club
 -- Average Rating Feature per club (on render)
 -- Validations (club must have name, etc...) website (done)
+
+For comments Form:
+<div class="input-field">
+        <label for="comment">Comment </label>
+        <input type="text" name="comment" id="comment">
+        
+        </div>
+
+        <div class="input-field">Rating (5 = best)
+        <label for="rating"><input type="radio" id="rating" name="rating" value="1" />1</label>
+        <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
+        <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
+        <label><input type="radio" id="rating" name="rating" value="4" />4</label>
+        <label><input type="radio" id="rating" name="rating" value="5" />5</label>
+        
+
+        </div>

@@ -6,22 +6,15 @@ document.addEventListener("DOMContentLoaded", function(){
      .then(clubs => 
       initalizeClubData(clubs)
      );
+     selectClubToView()
 });
 
-// test that we can get data from the backend
-// const BACKEND_URL = 'http://localhost:3000';
-// fetch(`${BACKEND_URL}/clubs`)
-//   .then(response => response.json())
-//   .then(parsedResponse => 
-    
-//     console.log(parsedResponse[0].name, parsedResponse[0].id, parsedResponse[0].location)
-//     );
 
 // set DOM identifiers
 const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 
-
+const returnClubData;
 
 
 function initalizeClubData(clubs) {
@@ -71,21 +64,7 @@ createNewVenueButton.addEventListener("click", function(e) {
       
     </div>
 
-        <div class="input-field">
-        <label for="comment">Comment </label>
-        <input type="text" name="comment" id="comment">
         
-        </div>
-
-        <div class="input-field">Rating (5 = best)
-        <label for="rating"><input type="radio" id="rating" name="rating" value="1" />1</label>
-        <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
-        <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
-        <label><input type="radio" id="rating" name="rating" value="4" />4</label>
-        <label><input type="radio" id="rating" name="rating" value="5" />5</label>
-        
-
-        </div>
 
         <input id="submit" type="submit" value="Create Venue" class="button2">
       </form>
@@ -166,4 +145,42 @@ function renderClubs(info) {
 
 function clearForm() {
   leftPage.innerHTML = ""
+}
+
+
+// Select Club to Show
+const clubList = document.querySelector(".column2")
+function selectClubToView() {
+  clubList.addEventListener("click", function(e) {
+    console.log(e.target.id)
+    showClubDetail(e.target.id)
+})
+}
+
+function showClubDetail(id) {
+  let club = getClubDetails(id)
+  console.log(club)
+  mountToCenterPage(club)
+}
+
+function getClubDetails(id) {
+  fetch(`http://localhost:3000/clubs/${id}`)
+  .then(res => res.json())
+   .then(clubs => 
+     returnClubData = clubs
+   );
+}
+
+function mountToCenterPage(info) {
+  let club_info = 
+  `
+    <div class="rclub" id=${info.id}>
+    <p>${info.name}</p>
+    <br>${info.location}</br>
+    <br>$ ${info.cover}</br>
+    <br><a href=${info.website}  target="_blank">${info.website}</a>
+
+    </div>
+  `
+  leftPage.innerHTML = club_info
 }
