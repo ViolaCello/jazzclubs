@@ -74,4 +74,10 @@ textarea {
   border: 15px solid green;
   padding: 50px;
   margin: 20px;
+  line-height: .7;
+}
+
+.rclub p {
+  font-family: impact;
+  font-size: xx-large;
 }

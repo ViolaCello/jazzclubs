@@ -149,10 +149,10 @@ function renderClubs(info) {
   `
     <div class="rclub" id=${info.id}>
     <p>${info.name}</p>
-    <p>${info.location}</p>
-    <p>${info.cover}</p>
-    <p>${info.website}</p>
-    
+    <br>${info.location}</br>
+    <br>$ ${info.cover}</br>
+    <br><a href=${info.website}  target="_blank">${info.website}</a>
+
     </div>
   `
   rightPage.innerHTML += club_info
