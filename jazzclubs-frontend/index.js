@@ -1,5 +1,13 @@
 console.log("testing...")
 
+document.addEventListener("DOMContentLoaded", function(){
+  fetch("http://localhost:3000/clubs")
+    .then(res => res.json())
+     .then(clubs => 
+      initalizeClubData(clubs)
+     );
+});
+
 // test that we can get data from the backend
 // const BACKEND_URL = 'http://localhost:3000';
 // fetch(`${BACKEND_URL}/clubs`)
@@ -14,13 +22,13 @@ const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 
 
-// fetch info upon load
-fetch("http://localhost:3000/clubs")
-    .then(res => res.json())
-     .then(data => 
-      console.log(data)
-     );
 
+
+function initalizeClubData(clubs) {
+  for (club of clubs) {
+    renderClubs(club)
+  }
+}
 
 
 
@@ -131,15 +139,15 @@ fetch("http://localhost:3000/clubs", configObj)
   .then(res => res.json())
     .then((obj_club) => {
       let new_club = renderClubs(obj_club)
-      rightPage.innerHTML += new_club
+      
       clearForm()
     })
   }
 
 function renderClubs(info) {
-  console.log(info)
-  return `
-    <div class="rclub">
+  let club_info = 
+  `
+    <div class="rclub" id=${info.id}>
     <p>${info.name}</p>
     <p>${info.location}</p>
     <p>${info.cover}</p>
@@ -147,6 +155,7 @@ function renderClubs(info) {
     
     </div>
   `
+  rightPage.innerHTML += club_info
 }
 
 function clearForm() {
