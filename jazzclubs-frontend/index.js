@@ -117,7 +117,19 @@ fetch("http://localhost:3000/clubs", configObj)
   .then(res => res.json())
     .then((obj_club) => {
       let new_club = renderClubs(obj_club)
-      rightPage.append(new_club)
+      rightPage.innerHTML += new_club
     })
   }
 
+function renderClubs(info) {
+  console.log(info)
+  return `
+    <div class="rclub">
+    <p>${info.name}</p>
+    <p>${info.location}</p>
+    <p>${info.cover}</p>
+    <p>${info.website}</p>
+    
+    </div>
+  `
+}
