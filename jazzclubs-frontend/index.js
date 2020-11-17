@@ -9,8 +9,23 @@ console.log("testing...")
 //     console.log(parsedResponse[0].name, parsedResponse[0].id, parsedResponse[0].location)
 //     );
 
+// set DOM identifiers
 const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
+
+
+// fetch info upon load
+fetch("http://localhost:3000/clubs")
+    .then(res => res.json())
+     .then(data => 
+      console.log(data)
+     );
+
+
+
+
+
+
 // get Form to add a Venue
 const createNewVenueButton = document.querySelector(".button1");
 
