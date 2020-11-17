@@ -21,7 +21,7 @@ body, html {
 
   .container, h1 {
     width: 100%;
-  
+   
     padding: 10px;
     margin: 10px auto;
     
@@ -71,7 +71,7 @@ textarea {
 .rclub {
   background-color: lightgrey;
   width: 300px;
-  border: 15px solid green;
+  border: 15px solid #008CBA;
   padding: 50px;
   margin: 20px;
   line-height: .7;
@@ -81,3 +81,9 @@ textarea {
   font-family: impact;
   font-size: xx-large;
 }
+
+a:link {
+  text-decoration: none;
+  flood-color: #008CBA;
+}
+
