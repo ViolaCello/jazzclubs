@@ -7,9 +7,4 @@ To Do Tuesday:
 -- Edit Comments
 -- Average Rating Feature per club
 -- Average Rating Feature per club (on render)
-
-
-.image-container {
-  max-height:100px;
-  overflow:hidden;
-}
+-- Validations (club must have name, etc...)
