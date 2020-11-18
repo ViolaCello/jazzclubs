@@ -129,7 +129,7 @@ function toDisplayForm() {
           throw new Error(obj_club.errors) 
         }else{
        
-        let new_club = renderClubs(obj_club)
+        renderClubs()
         
         clearForm()
         }
