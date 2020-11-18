@@ -9,3 +9,6 @@ class ApiService{
       const data = await resp.json()
       return data
     }
+
+
+}
