@@ -9,7 +9,7 @@ const api = new ApiService();
 
 const init = () =>{
   renderClubs()
- 
+  
 }
 
 // DOM identifiers
@@ -27,7 +27,7 @@ async function renderClubs(){
   
   rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
-
+  selectClubToView()
 }
 
 
@@ -35,10 +35,10 @@ init()
 
 // selectClubToView()
 
-document.addEventListener("DOMContentLoaded", function(){
+// document.addEventListener("DOMContentLoaded", function(){
    
-    selectClubToView()
-});
+//     selectClubToView()
+// });
 
 
 // get Form to add a Venue
@@ -136,27 +136,27 @@ function toDisplayForm() {
           throw new Error(obj_club.errors) 
         }else{
        
-        renderClubs()
-        
+        // renderClubs()
+        addClubtoDOm(ojb_club)
         clearForm()
         }
       })
       .catch(err => alert(err))
     }
   
-//   function renderClubs(info) {
-//     let club_info = 
-//     `
-//       <div class="rclub" id=${info.id}>
-//       <p>${info.name}</p>
-//       <br>${info.location}</br>
-//       <br>$ ${info.cover}</br>
-//       <br><a href=${info.website}  target="_blank">${info.website}</a>
+  function  addClubtoDOm(info) {
+    let club_info = 
+    `
+      <div class="rclub" id=${info.id}>
+      <p>${info.name}</p>
+      <br>${info.location}</br>
+      <br>$ ${info.cover}</br>
+      <br><a href=${info.website}  target="_blank">${info.website}</a>
   
-//       </div>
-//     `
-//     rightPage.innerHTML += club_info
-//   }
+      </div>
+    `
+    rightPage.innerHTML += club_info
+  }
   
   function clearForm() {
     leftPage.innerHTML = ""
