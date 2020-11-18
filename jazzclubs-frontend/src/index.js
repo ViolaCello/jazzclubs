@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(){
-   
-       selectClubToView()
-  });
+
 
 
 
@@ -38,7 +35,10 @@ init()
 
 // selectClubToView()
 
-
+document.addEventListener("DOMContentLoaded", function(){
+   
+    selectClubToView()
+});
 
 
 // get Form to add a Venue
@@ -178,13 +178,25 @@ function toDisplayForm() {
     mountToCenterPage(club)
   }
   
-  function getClubDetails(id) {
-    fetch(`http://localhost:3000/clubs/${id}`)
-    .then(res => res.json())
-     .then(clubs => 
-       returnClubData = clubs
-     );
-  }
+function getClubDetails(clubId) {
+    console.log(clubId)
+    let newId = parseInt(clubId)
+    let finder = Club.all
+    let found = finder.find(c => c.id === newId)
+    console.log(found)
+    return found 
+
+}
+
+
+
+//   function getClubDetails(id) {
+//     fetch(`http://localhost:3000/clubs/${id}`)
+//     .then(res => res.json())
+//      .then(clubs => 
+//        returnClubData = clubs
+//      );
+//   }
   
   function mountToCenterPage(info) {
     let club_info = 
