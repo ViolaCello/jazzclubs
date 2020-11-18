@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
 const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 
-const returnClubData;
+
 
 
 function initalizeClubData(clubs) {
