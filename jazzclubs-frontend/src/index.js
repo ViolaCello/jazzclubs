@@ -88,10 +88,10 @@ function toDisplayForm() {
     e.preventDefault()
     let formData = {}
    
-      let stars = whichRadioButtonWasSelected(rating)
+    //  let stars = whichRadioButtonWasSelected(rating)
       let venueName = venue.value
       let  venueLocation = nexttime.value
-      let venueComment = comment.value
+     // let venueComment = comment.value
       let venueCover = cover.value
       let venueWebsite = website.value
      Object.assign(formData, {name:venueName}, {location:venueLocation}, {cover:venueCover}, {website:venueWebsite})
