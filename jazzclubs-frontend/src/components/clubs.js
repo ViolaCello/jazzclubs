@@ -13,5 +13,26 @@ static all = []
       }
 
 
+      htmlify(){
+        // return a string template of a club in HTML form
+        return (`
+
+        <div class="rclub" id=${this.id}>
+        <p>${this.name}</p>
+        <br>${this.location}</br>
+        <br>$ ${this.cover}</br>
+        <br><a href=${thiswebsite}  target="_blank">${this.website}</a>
+    
+        </div>
+`)
+      }
+
+      static htmlifyAll(){
+        // return a string template of all clubs in HTML format
+        // clear out index page Maybe
+        return Car.all.map(car=> car.htmlify()).join("")
+      }
+
+
 
 }
