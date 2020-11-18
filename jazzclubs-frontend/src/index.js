@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", function(){
+   
+       selectClubToView()
+  });
+
+
+
 console.log("Hi Tony - we are loaded in the console")
 
 const api = new ApiService();
@@ -5,7 +12,7 @@ const api = new ApiService();
 
 const init = () =>{
   renderClubs()
-  // bindEvents()
+ 
 }
 
 // DOM identifiers
@@ -29,7 +36,7 @@ async function renderClubs(){
 
 init()
 
-
+// selectClubToView()
 
 
 
