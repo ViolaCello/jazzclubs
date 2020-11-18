@@ -30,9 +30,15 @@ static all = []
       static htmlifyAll(){
         // return a string template of all clubs in HTML format
         // clear out index page Maybe
-        return Car.all.map(car=> car.htmlify()).join("")
+        return Club.all.map(club=> club.htmlify()).join("")
       }
 
-
+      static renderAll(){
+        return(`
+        
+            ${this.htmlifyAll()}
+         
+        `)
+      }
 
 }
