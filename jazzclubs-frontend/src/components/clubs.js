@@ -21,7 +21,7 @@ static all = []
         <p>${this.name}</p>
         <br>${this.location}</br>
         <br>$ ${this.cover}</br>
-        <br><a href=${thiswebsite}  target="_blank">${this.website}</a>
+        <br><a href=${this.website}  target="_blank">${this.website}</a>
     
         </div>
 `)

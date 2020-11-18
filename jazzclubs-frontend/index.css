@@ -72,8 +72,9 @@ textarea {
   background-color: lightgrey;
   width: 300px;
   border: 15px solid #008CBA;
-  padding: 50px;
-  margin: 20px;
+  border-radius:100px;
+  padding: 10px;
+  margin: 10px;
   line-height: .7;
 }
 
