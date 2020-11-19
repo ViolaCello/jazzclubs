@@ -12,7 +12,6 @@ static all = []
         if (club_obj.reviews===undefined) {
           this.reviews = []
         }
-        console.log(club_obj.reviews)
         Club.all.push(this)
       } 
 

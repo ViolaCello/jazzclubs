@@ -1,5 +1,5 @@
 class ClubsController < ApplicationController
-  #  before_action :get_clubs, only:[:show, :update, :destroy]
+ 
 
 
 def index
@@ -17,14 +17,14 @@ def create
     end
   end
 
-  def show
-    club = Club.find_by_id(params[:id])
-    if club
-    render json: club, except:  [:created_at, :updated_at], include: [:reviews]
-    else  
-        render json: { errors: 'Club not found.' }
-    end
-  end
+  # def show
+  #   club = Club.find_by_id(params[:id])
+  #   if club
+  #   render json: club, except:  [:created_at, :updated_at], include: [:reviews]
+  #   else  
+  #       render json: { errors: 'Club not found.' }
+  #   end
+  # end
 
 private
 

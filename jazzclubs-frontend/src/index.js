@@ -18,7 +18,6 @@ async function renderClubs(){
   for(club of clubs){
     new Club(club)
   }
-  
   rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
   selectClubToView()
@@ -107,7 +106,6 @@ function toDisplayForm() {
   
   function  addClubtoDOm(info) {
     let newClub = new Club(info)
-    debugger
     let club_info = 
     `
       <div class="rclub" id=${info.id}>
@@ -228,7 +226,7 @@ function whichRadioButtonWasSelected(rating) {
 }
 }
 
-async function displayCommentForm() {
+function displayCommentForm() {  // originally had async here
 
   leftPage.innerHTML += commentForm
 
@@ -265,7 +263,7 @@ function addToClass(newReview) {
     let finder = Club.all
     let found = finder.find(c => c.id === newId)
     let clubReviews = found.reviews
-    clubReviews.push({comments: newReview.comments, stars: newReview.stars} )
+    clubReviews.push( {comments: newReview.comments, stars: newReview.stars} )
     showClubDetail(newId)
 }
 
