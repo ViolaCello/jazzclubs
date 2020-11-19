@@ -41,6 +41,17 @@ init()
 // });
 
 
+// Select Club to Show
+//  document.addEventListener("DOMContentLoaded", function(){
+//    const clubList = document.querySelector(".column2")
+ 
+//    clubList.addEventListener("click", function(e) {
+//      console.log(e.target.id)
+//      showClubDetail(e.target.id)
+//  })
+//  })
+
+
 // get Form to add a Venue
 const createNewVenueButton = document.querySelector(".button1");
 
@@ -163,14 +174,20 @@ function toDisplayForm() {
   }
   
   
-  // Select Club to Show
   const clubList = document.querySelector(".column2")
-  function selectClubToView() {
-    clubList.addEventListener("click", function(e) {
-      console.log(e.target.id)
-      showClubDetail(e.target.id)
-  })
-  }
+ function selectClubToView() {
+   clubList.addEventListener("click", function(e) {
+    // debugger
+     if (e.target.className==="rclub") {
+     console.log(e.target.id)
+     showClubDetail(e.target.id)
+     } else if 
+     (e.target.parentElement.className==="rclub") {
+      showClubDetail(e.target.parentElement.id)
+     }
+ })
+}
+ 
   
   function showClubDetail(id) {
     let club = getClubDetails(id)
@@ -199,6 +216,13 @@ function getClubDetails(clubId) {
 //   }
   
   function mountToCenterPage(info) {
+    const reviews = info.reviews
+    reviewArray = []
+    for (review of reviews) {
+      reviewArray.push(review)
+    }
+console.log(reviewArray)
+debugger
     let club_info = 
     `
       <div class="rclub" id=${info.id}>
@@ -206,8 +230,14 @@ function getClubDetails(clubId) {
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
-  
+      <br><br> 
+
+      ${info.reviews.map(log => `<li> ${log.comments}: ${log.stars} </li>`).join("")}
+     
       </div>
-    `
+      `
+      
+      
+    
     leftPage.innerHTML = club_info
   }

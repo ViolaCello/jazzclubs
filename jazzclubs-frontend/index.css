@@ -28,11 +28,15 @@ body, html {
   }
 
   .column1 {
+    justify-content: center;
+    align-content: center;
     width: 60%; 
    display: inline-table;
   }
 
   .column2{
+    justify-content: center;
+    align-content: center;
     width: 35%; 
    display: inline-table;
   }
