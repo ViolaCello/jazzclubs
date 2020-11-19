@@ -54,6 +54,7 @@ init()
 
 // get Form to add a Venue
 const createNewVenueButton = document.querySelector(".button1");
+let reviewButton;
 
 createNewVenueButton.addEventListener("click", function(e) {
   e.preventDefault()
@@ -223,7 +224,7 @@ function getClubDetails(clubId) {
       reviewArray.push(review)
     }
 console.log(reviewArray)
-debugger
+// debugger
     let club_info = 
     `
       <div class="soloclub" id=${info.id}>
@@ -231,16 +232,26 @@ debugger
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
-      <br><br>Average Rating: ${this.averageRating()}
+      <br><br>Average Rating: ${info.averageRating()}
+      <br><br>
       <br><br> Reviews:
     <ul>
       ${info.reviews.map(log => `<span> ${log.comments} </span><br>
       <span>Rating: ${log.stars} </span><br>`).join("")}
       </ul>
+      <button type="button" id="addreview" class="button3">Add Review</button>
       </div>
       `
       
-      
-    
     leftPage.innerHTML = club_info
+
+    reviewButton.document.querySelector(".button3")  
+    reviewButton.addEventListener("click", function(e) {
+      e.preventDefault()
+      displayCommentForm()
+      }
+      )
   }
+
+
+  
