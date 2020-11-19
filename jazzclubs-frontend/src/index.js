@@ -288,6 +288,15 @@ async function displayCommentForm() {
 
 async function sendData(formData) {
   let postResponse = await api.postReview(formData)
-  showClubDetail(postResponse.club_id)
+  // add new review to Clubs CLASS
+  addToClass(postResponse)
 }
 
+function addToClass(newReview) {
+  let newId = parseInt(newReview.club_id)
+    let finder = Club.all
+    let found = finder.find(c => c.id === newId)
+    let clubReviews = found.reviews
+    clubReviews.push({comments: newReview.comments, stars: newReview.stars} )
+    showClubDetail(newId)
+}

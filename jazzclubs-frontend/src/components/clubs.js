@@ -9,6 +9,7 @@ static all = []
         this.cover = club_obj.cover
         this.website = club_obj.website
         this.reviews = club_obj.reviews
+        console.log(club_obj.reviews)
         Club.all.push(this)
       }
 
