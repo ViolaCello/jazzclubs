@@ -27,6 +27,14 @@ static all = []
 `)
       }
 
+      averageRating(){
+        let starsArray = []
+        this.reviews.map(key => starsArray.push(key.stars))
+        let result = starsArray.reduce((total, score) => total + score) / starsArray.length;
+        return result
+      }
+
+
       static htmlifyAll(){
         // return a string template of all clubs in HTML format
         // clear out index page Maybe
