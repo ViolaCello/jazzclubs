@@ -22,6 +22,7 @@ static all = []
         <br>${this.location}</br>
         <br>$ ${this.cover}</br>
         <br><a href=${this.website}  target="_blank">${this.website}</a>
+        <br><br>Average Rating: ${this.averageRating()}
     
         </div>
 `)
@@ -30,8 +31,11 @@ static all = []
       averageRating(){
         let starsArray = []
         this.reviews.map(key => starsArray.push(key.stars))
+        if (starsArray.length===0) {
+          return "No ratings"
+        } else {
         let result = starsArray.reduce((total, score) => total + score) / starsArray.length;
-        return result
+        return result }
       }
 
 
