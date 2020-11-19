@@ -1,7 +1,3 @@
-
-
-
-
 console.log("Hi Tony - we are loaded in the console")
 
 const api = new ApiService();
@@ -16,13 +12,11 @@ const init = () =>{
 const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 
-// function
-
+// add list of all clubs onto the page upon receiving the info from the database
 async function renderClubs(){
   const clubs = await api.getAllClubs()
   for(club of clubs){
     new Club(club)
-    // console.log(club.reviews) - I can get the reviews here
   }
   
   rightPage.innerHTML = ""
@@ -90,14 +84,11 @@ function toDisplayForm() {
     e.preventDefault()
     let formData = {}
    
-    //  let stars = whichRadioButtonWasSelected(rating)
       let venueName = venue.value
       let  venueLocation = nexttime.value
-     // let venueComment = comment.value
       let venueCover = cover.value
       let venueWebsite = website.value
      Object.assign(formData, {name:venueName}, {location:venueLocation}, {cover:venueCover}, {website:venueWebsite})
-     console.log(formData)
      postVenue(formData)
   }
     )
@@ -114,33 +105,6 @@ function toDisplayForm() {
     }
   }
   
-  
-  
-  // Post Form info to database
-  // function sendFormInfo(formData) {
-  // let configObj = {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "Accept": "application/json"
-  //   },
-  //   body: JSON.stringify(formData)
-  // };
-   
-  // fetch("http://localhost:3000/clubs", configObj)
-  //   .then(res => res.json())
-  //     .then((obj_club) => {
-  //       if (obj_club.errors) {
-  //         throw new Error(obj_club.errors) 
-  //       }else{
-       
-  //       // renderClubs()
-  //       addClubtoDOm(ojb_club)
-  //       clearForm()
-  //       }
-  //     })
-  //     .catch(err => alert(err))
-  //   }
   
   function  addClubtoDOm(info) {
     let newClub = new Club(info)
@@ -164,7 +128,7 @@ function toDisplayForm() {
   }
   
   
-  const clubList = document.querySelector(".column2")
+const clubList = document.querySelector(".column2")
  function selectClubToView() {
    clubList.addEventListener("click", function(e) {
     // debugger
@@ -194,25 +158,14 @@ function getClubDetails(clubId) {
     return found 
 
 }
-
-
-
-//   function getClubDetails(id) {
-//     fetch(`http://localhost:3000/clubs/${id}`)
-//     .then(res => res.json())
-//      .then(clubs => 
-//        returnClubData = clubs
-//      );
-//   }
   
   function mountToCenterPage(info) {
     const reviews = info.reviews
     reviewArray = []
     for (review of reviews) {
       reviewArray.push(review)
-    }
-console.log(reviewArray)
-// debugger
+        }
+
     let club_info = 
     `
       <div class="soloclub" id=${info.id}>
@@ -240,7 +193,9 @@ console.log(reviewArray)
     reviewButton = document.querySelector(".button3")  
     reviewButton.addEventListener("click", function(e) {
       e.preventDefault()
+      removeAddReviewButton()
       displayCommentForm()
+      
       }
       )
   }
@@ -280,6 +235,8 @@ async function displayCommentForm() {
 
   leftPage.innerHTML += commentForm
 
+  
+
   const getCommentFormButton = document.querySelector("#speak");
   getCommentFormButton.addEventListener("click", function(e) {
   e.preventDefault()
@@ -310,4 +267,8 @@ function addToClass(newReview) {
     let clubReviews = found.reviews
     clubReviews.push({comments: newReview.comments, stars: newReview.stars} )
     showClubDetail(newId)
+}
+
+function removeAddReviewButton() {
+  reviewButton.innerText = "" 
 }
