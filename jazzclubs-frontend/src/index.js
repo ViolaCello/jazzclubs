@@ -163,6 +163,7 @@ function toDisplayForm() {
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
+      <br><br>Average Rating: ${this.averageRating()}
   
       </div>
     `
@@ -230,6 +231,7 @@ debugger
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
+      <br><br>Average Rating: ${this.averageRating()}
       <br><br> Reviews:
     <ul>
       ${info.reviews.map(log => `<span> ${log.comments} </span><br>
