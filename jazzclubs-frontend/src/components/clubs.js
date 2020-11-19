@@ -9,9 +9,12 @@ static all = []
         this.cover = club_obj.cover
         this.website = club_obj.website
         this.reviews = club_obj.reviews
+        if (club_obj.reviews===undefined) {
+          this.reviews = []
+        }
         console.log(club_obj.reviews)
         Club.all.push(this)
-      }
+      } 
 
 
       htmlify(){

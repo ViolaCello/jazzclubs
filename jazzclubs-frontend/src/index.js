@@ -98,42 +98,53 @@ function toDisplayForm() {
       let venueWebsite = website.value
      Object.assign(formData, {name:venueName}, {location:venueLocation}, {cover:venueCover}, {website:venueWebsite})
      console.log(formData)
-     sendFormInfo(formData)
+     postVenue(formData)
   }
     )
   }
    
-  
+  async function postVenue(formData) {
+    let postResponse = await api.postVenue(formData)
+    debugger
+    if (postResponse.errors) {
+    throw new Error(postResponse.errors) }
+    else {
+      addClubtoDOm(postResponse)
+      clearForm()
+    }
+  }
   
   
   
   // Post Form info to database
-  function sendFormInfo(formData) {
-  let configObj = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(formData)
-  };
+  // function sendFormInfo(formData) {
+  // let configObj = {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "Accept": "application/json"
+  //   },
+  //   body: JSON.stringify(formData)
+  // };
    
-  fetch("http://localhost:3000/clubs", configObj)
-    .then(res => res.json())
-      .then((obj_club) => {
-        if (obj_club.errors) {
-          throw new Error(obj_club.errors) 
-        }else{
+  // fetch("http://localhost:3000/clubs", configObj)
+  //   .then(res => res.json())
+  //     .then((obj_club) => {
+  //       if (obj_club.errors) {
+  //         throw new Error(obj_club.errors) 
+  //       }else{
        
-        // renderClubs()
-        addClubtoDOm(ojb_club)
-        clearForm()
-        }
-      })
-      .catch(err => alert(err))
-    }
+  //       // renderClubs()
+  //       addClubtoDOm(ojb_club)
+  //       clearForm()
+  //       }
+  //     })
+  //     .catch(err => alert(err))
+  //   }
   
   function  addClubtoDOm(info) {
+    let newClub = new Club(info)
+    debugger
     let club_info = 
     `
       <div class="rclub" id=${info.id}>
@@ -141,7 +152,7 @@ function toDisplayForm() {
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
-      <br><br>Average Rating: ${this.averageRating()}
+      <br><br>Average Rating: ${newClub.averageRating()}
   
       </div>
     `

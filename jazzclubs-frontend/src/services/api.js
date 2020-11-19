@@ -18,6 +18,13 @@ class ApiService{
       return data
     }
 
+    async postVenue(data) {
+      const resp = await fetch(this.baseUrl+"/clubs", 
+      {...this.options, body: JSON.stringify(data)})
+      const response = await resp.json()
+       return response
+    }
+
     async postReview(data) {
       const resp = await fetch(this.baseUrl+"/reviews", 
       {...this.options, body: JSON.stringify(data)})
