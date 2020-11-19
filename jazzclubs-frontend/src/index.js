@@ -33,23 +33,6 @@ async function renderClubs(){
 
 init()
 
-// selectClubToView()
-
-// document.addEventListener("DOMContentLoaded", function(){
-   
-//     selectClubToView()
-// });
-
-
-// Select Club to Show
-//  document.addEventListener("DOMContentLoaded", function(){
-//    const clubList = document.querySelector(".column2")
- 
-//    clubList.addEventListener("click", function(e) {
-//      console.log(e.target.id)
-//      showClubDetail(e.target.id)
-//  })
-//  })
 
 
 // get Form to add a Venue
@@ -298,14 +281,13 @@ async function displayCommentForm() {
 
 
   Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
-  console.log(formData)
   sendData(formData)
   
 })
 }
 
 async function sendData(formData) {
-  const response = await api.postReview(formData)
-  .catch(err => alert(err))
-  debugger
+  let postResponse = await api.postReview(formData)
+  showClubDetail(postResponse.club_id)
 }
+
