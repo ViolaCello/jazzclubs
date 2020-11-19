@@ -282,7 +282,7 @@ function whichRadioButtonWasSelected(rating) {
 }
 }
 
-function displayCommentForm() {
+async function displayCommentForm() {
 
   leftPage.innerHTML += commentForm
 
@@ -297,7 +297,13 @@ function displayCommentForm() {
 
   Object.assign(formData, {stars:starRating}, {comments:venueComment})
   console.log(formData)
-  await api.postReview(formData)
+  sendData(formData)
+  
 })
 }
 
+async function sendData(formData) {
+  const response = await api.postReview(formData)
+  .catch(err => alert(err))
+  debugger
+}

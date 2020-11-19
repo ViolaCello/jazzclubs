@@ -2,7 +2,15 @@ class ApiService{
 
     constructor() {
       this.baseUrl = `http://localhost:3000`;
+      this.options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
     }
+      
   
     async getAllClubs(){
       const resp = await fetch(this.baseUrl+"/clubs")
@@ -10,5 +18,11 @@ class ApiService{
       return data
     }
 
+    async postReview(data) {
+      const resp = await fetch(this.baseUrl+"/reviews", 
+      {...this.options, body: JSON.stringify(data)})
+      const response = await resp.json()
+    return response
+    }
 
 }
