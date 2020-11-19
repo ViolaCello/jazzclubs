@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 
+    
 
     def create
         review = Review.new(review_params)
@@ -12,7 +13,7 @@ class ReviewsController < ApplicationController
 
 private
 
-      def club_params
+      def review_params
         params.require(:review).permit(:stars, :comments, :club_id)
       end
 

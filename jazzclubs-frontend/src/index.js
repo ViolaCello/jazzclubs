@@ -294,8 +294,10 @@ async function displayCommentForm() {
 
   let venueComment = comment.value
   let starRating = whichRadioButtonWasSelected(rating)
+  let venueId = document.querySelector(".soloclub").id
 
-  Object.assign(formData, {stars:starRating}, {comments:venueComment})
+
+  Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
   console.log(formData)
   sendData(formData)
   
