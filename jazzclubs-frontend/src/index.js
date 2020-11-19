@@ -225,15 +225,16 @@ console.log(reviewArray)
 debugger
     let club_info = 
     `
-      <div class="rclub" id=${info.id}>
+      <div class="soloclub" id=${info.id}>
       <p>${info.name}</p>
       <br>${info.location}</br>
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
-      <br><br> 
-
-      ${info.reviews.map(log => `<li> ${log.comments}: ${log.stars} </li>`).join("")}
-     
+      <br><br> Reviews:
+    <ul>
+      ${info.reviews.map(log => `<span> ${log.comments} </span><br>
+      <span>Rating: ${log.stars} </span><br>`).join("")}
+      </ul>
       </div>
       `
       

@@ -92,3 +92,17 @@ a:link {
   flood-color: #008CBA;
 }
 
+.soloclub {
+  background-color: lightgrey;
+  width: 500px;
+  border: 15px solid #008CBA;
+  border-radius:100px;
+  padding: 10px;
+  margin: 10px;
+  line-height: auto;
+}
+
+.soloclub p {
+  font-family: impact;
+  font-size: xx-large;
+}
