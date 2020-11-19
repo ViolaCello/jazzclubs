@@ -38,7 +38,8 @@ static all = []
         if (starsArray.length===0) {
           return "No ratings"
         } else {
-        let result = starsArray.reduce((total, score) => total + score) / starsArray.length;
+        let number = starsArray.reduce((total, score) => total + score) / starsArray.length;
+        let result = Math.round(number * 10) / 10     // make it only one decimal place
         return result }
       }
 
