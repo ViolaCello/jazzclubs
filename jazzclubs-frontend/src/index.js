@@ -96,9 +96,8 @@ function toDisplayForm() {
    
   async function postVenue(formData) {
     let postResponse = await api.postVenue(formData)
-    debugger
     if (postResponse.errors) {
-    throw new Error(postResponse.errors) }
+    alert(postResponse.errors) }
     else {
       addClubtoDOm(postResponse)
       clearForm()
@@ -131,9 +130,7 @@ function toDisplayForm() {
 const clubList = document.querySelector(".column2")
  function selectClubToView() {
    clubList.addEventListener("click", function(e) {
-    // debugger
      if (e.target.className==="rclub") {
-     console.log(e.target.id)
      showClubDetail(e.target.id)
      } else if 
      (e.target.parentElement.className==="rclub") {
@@ -256,8 +253,11 @@ async function displayCommentForm() {
 
 async function sendData(formData) {
   let postResponse = await api.postReview(formData)
+  if (postResponse.errors) {
+    alert(postResponse.errors)
+  } else { 
   // add new review to Clubs CLASS
-  addToClass(postResponse)
+  addToClass(postResponse) }
 }
 
 function addToClass(newReview) {
