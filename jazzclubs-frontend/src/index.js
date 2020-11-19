@@ -245,7 +245,11 @@ console.log(reviewArray)
       
     leftPage.innerHTML = club_info
 
-    reviewButton.document.querySelector(".button3")  
+    addReviewButton()
+  }
+
+    function addReviewButton() {
+    reviewButton = document.querySelector(".button3")  
     reviewButton.addEventListener("click", function(e) {
       e.preventDefault()
       displayCommentForm()
@@ -253,5 +257,6 @@ console.log(reviewArray)
       )
   }
 
-
+function displayCommentForm() {
   
+}
