@@ -32,8 +32,6 @@ def club_params
     params.require(:club).permit(:name, :location, :cover, :website)
   end
 
-  def get_clubs
-    club = Club.find_by_id(params[:id])
-  end
+  
 
 end
