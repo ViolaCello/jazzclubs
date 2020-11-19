@@ -121,13 +121,7 @@ function toDisplayForm() {
   }
    
   
-  function whichRadioButtonWasSelected(rating) {
-    for(i = 0; i < rating.length; i++) { 
-      if(rating[i].checked) 
-     // console.log(rating[i].value)
-     return rating[i].value
-  }
-  }
+  
   
   
   // Post Form info to database
@@ -257,6 +251,53 @@ console.log(reviewArray)
       )
   }
 
-function displayCommentForm() {
-  
+
+const commentForm = 
+`
+    <form id="createreview" action="#" data-action="create">
+        <div class="input-field">
+        <label for="comment">Comment </label>
+        <input type="text" name="comment" id="comment">
+        
+        </div>
+
+        <div class="input-field">Rating (5 = best)
+        <label for="rating"><input type="radio" id="rating" name="rating" value="1" />1</label>
+        <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
+        <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
+        <label><input type="radio" id="rating" name="rating" value="4" />4</label>
+        <label><input type="radio" id="rating" name="rating" value="5" />5</label>
+        
+        <input id="speak" type="submit" value="Be Heard" class="button2">
+
+        </div>
+
+
+`
+function whichRadioButtonWasSelected(rating) {
+  for(i = 0; i < rating.length; i++) { 
+    if(rating[i].checked) 
+   // console.log(rating[i].value)
+   return rating[i].value
 }
+}
+
+function displayCommentForm() {
+
+  leftPage.innerHTML += commentForm
+
+  const getCommentFormButton = document.querySelector("#speak");
+  getCommentFormButton.addEventListener("click", function(e) {
+  e.preventDefault()
+
+  let formData = {}
+
+  let venueComment = comment.value
+  let starRating = whichRadioButtonWasSelected(rating)
+
+  Object.assign(formData, {stars:starRating}, {comments:venueComment})
+  console.log(formData)
+  await api.postReview(formData)
+})
+}
+
