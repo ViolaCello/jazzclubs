@@ -110,9 +110,6 @@ function toDisplayForm() {
     `
       <div class="rclub" id=${info.id}>
       <p>${info.name}</p>
-      <br>${info.location}</br>
-      <br>$ ${info.cover}</br>
-      <br><a href=${info.website}  target="_blank">${info.website}</a>
       <br><br>Average Rating: ${newClub.averageRating()}
   
       </div>
@@ -169,14 +166,16 @@ function getClubDetails(clubId) {
       <br>$ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
       <br><br>Average Rating: ${info.averageRating()}
-      <br><br>
-      <br><br> Reviews:
-    <ul>
-      ${info.reviews.map(log => `<span> ${log.comments} </span><br>
-      <span>Rating: ${log.stars} </span><br>`).join("")}
-      </ul>
-      <button type="button" id="addreview" class="button3">Add Review</button>
+      <br><br><button type="button" id="addreview" class="button3">Add Review</button>
       </div>
+      <div class="comments"><h3> Reviews:</h3>
+   
+      ${info.reviews.map(log => `<p><span> ${log.comments} </span><br>
+      <span><b><i>Rating: ${log.stars}</i></b> </span><br></p>`).join("")}
+     
+      
+      </div>
+      
       `
       
     leftPage.innerHTML = club_info

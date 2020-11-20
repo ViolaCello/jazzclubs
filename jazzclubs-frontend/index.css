@@ -108,7 +108,7 @@ a:link {
   border-radius:100px;
   padding: 10px;
   margin: 10px;
-  line-height: auto;
+  line-height: .5;
   margin-left: 150px;
 }
 
@@ -117,3 +117,10 @@ a:link {
   font-size: xx-large;
 }
 
+.comments {
+  width: 500px;
+  background-color: indigo;
+  text-align: center;
+  margin-left: 175px;
+  color: powderblue;
+}
