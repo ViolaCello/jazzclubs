@@ -168,6 +168,7 @@ function getClubDetails(clubId) {
       <br><br>Average Rating: ${info.averageRating()}
       <br><br><button type="button" id="addreview" class="button3">Add Review</button>
       </div>
+      <div class="insertform"></div>
       <div class="comments"><h3> Reviews:</h3>
    
       ${info.reviews.map(log => `<p><span> ${log.comments} </span><br>
@@ -227,8 +228,9 @@ function whichRadioButtonWasSelected(rating) {
 
 function displayCommentForm() {  // originally had async here
 
-  leftPage.innerHTML += commentForm
-
+  // leftPage.innerHTML += commentForm
+  let insertFormHere = document.querySelector(".insertform")
+  insertFormHere.innerHTML = commentForm
   
 
   const getCommentFormButton = document.querySelector("#speak");
