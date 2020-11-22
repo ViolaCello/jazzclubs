@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
 
 * Database creation
+This appication uses the postresql database in Rails.  To initialize, on my system, anyway, it need to type:
+sudo service postgresql restart
+then,
+rails db:create
 
-* Database initialization
+Once you get it forked and cloned onto your system, it should begin to run once you 
+rails s
 
-* How to run the test suite
+and then open the index.html file from the frontend using the Chrome Browser.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

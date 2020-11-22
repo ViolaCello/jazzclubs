@@ -162,8 +162,8 @@ function getClubDetails(clubId) {
     `
       <div class="soloclub" id=${info.id}>
       <p>${info.name}</p>
-      <br>${info.location}</br>
-      <br>$ ${info.cover}</br>
+      <br><u>Location</u>: ${info.location}</br>
+      <br><u>Cover Charge</u> $ ${info.cover}</br>
       <br><a href=${info.website}  target="_blank">${info.website}</a>
       <br><br>Average Rating: ${info.averageRating()}
       <br><br><button type="button" id="addreview" class="button3">Add Review</button>
