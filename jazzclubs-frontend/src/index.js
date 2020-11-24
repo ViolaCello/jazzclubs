@@ -128,7 +128,7 @@ function toDisplayForm() {
   }
   
   function clearForm() {
-    leftPage.innerHTML = ""
+    leftPage.innerHTML =  `<img src="jazzclubflorence.jpg">`
   }
   
   
