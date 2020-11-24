@@ -8,6 +8,9 @@ sudo service postgresql restart
 then,
 rails db:create
 
+Seed data has been provided to start you off.  Type:
+rails db:seed
+
 Once you get it forked and cloned onto your system, it should begin to run once you 
 rails s
 
