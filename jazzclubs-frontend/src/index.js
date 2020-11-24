@@ -26,7 +26,17 @@ async function renderClubs(){
 
 init()
 
-
+    //  once Clubs have been rendered, addEventListener to them
+ function selectClubToView() {
+   rightPage.addEventListener("click", function(e) {
+     if (e.target.className==="rclub") {
+     showClubDetail(e.target.id)
+     } else if 
+     (e.target.parentElement.className==="rclub") {
+      showClubDetail(e.target.parentElement.id)
+     }
+ })
+}
 
 // get Form to add a Venue
 const createNewVenueButton = document.querySelector(".button1");
