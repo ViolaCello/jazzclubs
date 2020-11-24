@@ -132,17 +132,7 @@ function toDisplayForm() {
   }
   
   
-const clubList = document.querySelector(".column2")
- function selectClubToView() {
-   clubList.addEventListener("click", function(e) {
-     if (e.target.className==="rclub") {
-     showClubDetail(e.target.id)
-     } else if 
-     (e.target.parentElement.className==="rclub") {
-      showClubDetail(e.target.parentElement.id)
-     }
- })
-}
+
  
   
   function showClubDetail(id) {
@@ -211,7 +201,7 @@ const commentForm =
     <form id="createreview" action="#" data-action="create">
         <div class="input-field">
         <label for="comment">Comment </label>
-        <input type="text" name="comment" id="comment">
+        <textarea name="comment" id="comment"></textarea>
         
         </div>
 
