@@ -191,11 +191,12 @@ function getClubDetails(clubId) {
   }
 
 function editReviewButton() {
-  editButton = document.querySelector('.ebutton')
-  editButton.addEventListener("click", function(e) {
+ document.querySelectorAll('.ebutton').forEach(button => {
+  button.addEventListener("click", function(e) {
     e.preventDefault()
     let reviewID = e.target.id.split('edit')[1]
     editReview(reviewID)
+  })
   })
 }
 
@@ -222,11 +223,11 @@ const commentForm =
         </div>
 
         <div class="input-field">Rating (5 = best)
-        <label for="rating"><input type="radio" id="r1" name="rating" value="1" />1</label>
-        <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
-        <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
-        <label><input type="radio" id="rating" name="rating" value="4" />4</label>
-        <label><input type="radio" id="rating" name="rating" value="5" />5</label>
+        <label for="rating"><input type="radio" id="r1" name="rating" value="1"  />1</label>
+        <label><input type="radio" id="r2" name="rating" value="2"  />2</label>
+        <label><input type="radio"  id="r3" name="rating" value="3" />3</label>
+        <label><input type="radio" id="r4" name="rating" value="4"/>4</label>
+        <label><input type="radio" id="r5" name="rating" value="5" />5</label>
         
         <input id="speak" type="submit" value="Be Heard" class="button2">
 
@@ -242,7 +243,7 @@ function whichRadioButtonWasSelected(rating) {
 }
 }
 
-function displayCommentForm() {  // originally had async here
+function displayCommentForm() {  // 
 
   // leftPage.innerHTML += commentForm
   let insertFormHere = document.querySelector(".insertform")
@@ -294,6 +295,9 @@ function editReview(id) {
     insertFormHere.innerHTML = commentForm
     let fillComment = document.querySelector('#comment')
     fillComment.value=data.comments
-
+    let fillStars = document.querySelector(`#r${data.stars}`)
+    fillStars.checked="true"
+    let getCommentFormButton = document.querySelector("#speak");
+    getCommentFormButton.id = "sendedit"
 
 }
