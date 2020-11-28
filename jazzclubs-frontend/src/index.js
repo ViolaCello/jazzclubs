@@ -171,7 +171,9 @@ function getClubDetails(clubId) {
       <div class="insertform"></div>
       <div class="comments"><h3> Reviews:</h3>
    
-      ${info.reviews.map(log => `<p><span> ${log.comments} </span><br>
+      ${info.reviews.map(log => `<p><span> ${log.comments}
+      <button type="button" class="ebutton" id="edit${log.id}">Edit</button>
+      </span><br>
       <span><b><i>Rating: ${log.stars}</i></b> </span><br></p>`).join("")}
      
       
@@ -182,7 +184,19 @@ function getClubDetails(clubId) {
     leftPage.innerHTML = club_info
 
     addReviewButton()
+    editReviewButton()
   }
+
+function editReviewButton() {
+  editButton = document.querySelector('.ebutton')
+  editButton.addEventListener("click", function(e) {
+    e.preventDefault()
+    console.log(e)
+    let reviewID = e.target.id.split('edit')[1]
+    console.log(reviewID)
+  })
+}
+
 
     function addReviewButton() {
     reviewButton = document.querySelector(".button3")  
@@ -271,3 +285,4 @@ function addToClass(newReview) {
 function removeAddReviewButton() {
   reviewButton.innerText = "" 
 }
+

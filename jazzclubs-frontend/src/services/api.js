@@ -29,7 +29,14 @@ class ApiService{
       const resp = await fetch(this.baseUrl+"/reviews", 
       {...this.options, body: JSON.stringify(data)})
       const response = await resp.json()
-    return response
+      return response
     }
 
+    async editReview(data) {
+      const resp = await fetch(this.baseUrl+"/reviews", 
+      {...this.options, method: 'PATCH', body: JSON.stringify(data)})
+      const response = await resp.json()
+      return response
+    }
+    
 }
