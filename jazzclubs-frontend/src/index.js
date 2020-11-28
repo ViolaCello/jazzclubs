@@ -298,6 +298,29 @@ function editReview(id) {
     let fillStars = document.querySelector(`#r${data.stars}`)
     fillStars.checked="true"
     let getCommentFormButton = document.querySelector("#speak");
-    getCommentFormButton.id = "sendedit"
+    getCommentFormButton.addEventListener("Click", function(e) {
+      e.preventDefault()
 
+      let formData = {}
+    
+      let venueComment = comment.value
+      let starRating = whichRadioButtonWasSelected(rating)
+      let venueId = document.querySelector(".soloclub").id
+    
+    
+      Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
+      editData(formData)
+    })
+  }
+    
+
+async function editData(formData) {
+  let postResponse = await api.editReview(formData)
+  if (postResponse.errors) {
+    alert(postResponse.errors)
+  } else { 
+  // add new review to Clubs CLASS
+  //addToClass(postResponse) }
 }
+
+  }
