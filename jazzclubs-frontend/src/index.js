@@ -23,7 +23,7 @@ async function renderClubs(){
   rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
   selectClubToView()
-  debugger
+  
 }
 
 
@@ -222,7 +222,7 @@ const commentForm =
         </div>
 
         <div class="input-field">Rating (5 = best)
-        <label for="rating"><input type="radio" id="rating" name="rating" value="1" />1</label>
+        <label for="rating"><input type="radio" id="r1" name="rating" value="1" />1</label>
         <label><input type="radio" id="rating" name="rating" value="2"/>2</label>
         <label><input type="radio"  id="rating" name="rating" value="3" />3</label>
         <label><input type="radio" id="rating" name="rating" value="4" />4</label>
@@ -289,5 +289,11 @@ function removeAddReviewButton() {
 }
 
 function editReview(id) {
-    let found = Review.all.find(review => review.id === id)
+    let data = Review.all.find(review => review.id === parseInt(id))
+    let insertFormHere = document.querySelector(".insertform")
+    insertFormHere.innerHTML = commentForm
+    let fillComment = document.querySelector('#comment')
+    fillComment.value=data.comments
+
+
 }
