@@ -17,10 +17,13 @@ async function renderClubs(){
   const clubs = await api.getAllClubs()
   for(club of clubs){
     new Club(club)
+      for (review of club.reviews){
+         new Review(review)}
   }
   rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
   selectClubToView()
+  debugger
 }
 
 
@@ -191,9 +194,8 @@ function editReviewButton() {
   editButton = document.querySelector('.ebutton')
   editButton.addEventListener("click", function(e) {
     e.preventDefault()
-    console.log(e)
     let reviewID = e.target.id.split('edit')[1]
-    console.log(reviewID)
+    editReview(reviewID)
   })
 }
 
@@ -286,3 +288,6 @@ function removeAddReviewButton() {
   reviewButton.innerText = "" 
 }
 
+function editReview(id) {
+    let found = Review.all.find(review => review.id === id)
+}
