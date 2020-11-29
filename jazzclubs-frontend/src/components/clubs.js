@@ -23,11 +23,7 @@ static all = []
 
         <div class="rclub" id=${this.id}>
         <p>${this.name}</p>
-        <!-- May put back in
-        <br>${this.location}</br>
-        <br>$ ${this.cover}</br>
-        <br><a href=${this.website}  target="_blank">${this.website}</a>
-        -->
+        
         <br><br>Average Rating: ${this.averageRating()}
     
         </div>

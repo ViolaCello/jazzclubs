@@ -145,12 +145,10 @@ function toDisplayForm() {
   }
   
 function getClubDetails(clubId) {
-    console.log(clubId)
-    let newId = parseInt(clubId)
-    let finder = Club.all
-    let found = finder.find(c => c.id === newId)
-    console.log(found)
-    return found 
+    // let newId = parseInt(clubId)
+    // let finder = Club.all
+    // let found = finder.find(c => c.id === newId)
+    return Club.findClubById(parseInt(clubId))
 }
   
   
@@ -233,11 +231,13 @@ async function sendData(formData) {
 
 function addToClass(newReview) {
   let newId = parseInt(newReview.club_id)
-    let finder = Club.all
-    let found = finder.find(c => c.id === newId)
-    let clubReviews = found.reviews
+    // let finder = Club.all
+    // let found = finder.find(c => c.id === newId)
+    // let clubReviews = found.reviews
+    let clubReviews = Club.findClubById(newId).reviews
     clubReviews.push( {comments: newReview.comments, stars: newReview.stars} )
     showClubDetail(newId)
+    rightPage.innerHTML = Club.renderAll()
 }
 
 function removeAddReviewButton() {
@@ -280,23 +280,21 @@ async function editData(formData) {
 
 function updateLocally(postResponse) {
   let newId = parseInt(postResponse.club_id)
-    let finder = Club.all
-    let found = finder.find(c => c.id === newId)
-    let club = found.reviews
+    // let finder = Club.all
+    // let found = finder.find(c => c.id === newId)
+    let club = Club.findClubById(newId).reviews
+    // let club = found.reviews
     clubReviews = club.find(rev => rev.id===parseInt(postResponse.id))
     clubReviews.comments = postResponse.comments
     clubReviews.stars = postResponse.stars
     showClubDetail(newId)
-    replaceClubOnDom(found.id)
+    rightPage.innerHTML = Club.renderAll()
 }
 
 
 
 
-function replaceClubOnDom(club) {
-  let clubId = Club.findClubById(club)
-  console.log(clubId)
-}
+
 
 function mountToCenterPage(info) {
   const reviews = info.reviews
