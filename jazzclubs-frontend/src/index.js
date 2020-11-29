@@ -1,4 +1,4 @@
-console.log("Hi Tony - we are loaded in the console")
+console.log("We're on!")
 
 const api = new ApiService();
 
@@ -237,12 +237,10 @@ async function editData(formData) {
     if (postResponse.errors) {
           alert(postResponse.errors)
     }   else { 
-  // add new review to Clubs CLASS
- // updateLocally(postResponse)
- console.log("line 283 -b4", postResponse.club_id)
+        // get updated Club/Review info from the database
  let showUpdate = await renderClubs() 
   showClubDetail(parseInt(postResponse.club_id))
-  console.log("line 286 - after")}
+  }
 }
 
 function mountToCenterPage(info) {
