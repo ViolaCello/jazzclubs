@@ -11,17 +11,24 @@ const init = () =>{
 const leftPage = document.querySelector(".column1")
 const rightPage = document.querySelector(".column2")
 
+const clearForm = () => {
+  leftPage.innerHTML =  `<img src="jazzclubflorence.jpg">`
+}
+
+
 // add list of all clubs onto the page upon receiving the info from the database
 async function renderClubs(){
+  Club.all = []
+  Review.all = []
   const clubs = await api.getAllClubs()
   for(club of clubs){
     new Club(club)
       for (review of club.reviews){
          new Review(review)}
   }
-  // rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
   selectClubToView()
+  clearForm()
 }
 
 
@@ -128,13 +135,11 @@ function toDisplayForm() {
     rightPage.innerHTML += club_info
   }
   
- const clearForm = () => {
-    leftPage.innerHTML =  `<img src="jazzclubflorence.jpg">`
- }
 
    
  const showClubDetail = (id) => {
     let club = getClubDetails(id)
+    debugger
     mountToCenterPage(club)
   }
   
@@ -143,19 +148,12 @@ const getClubDetails = clubId =>  Club.findClubById(parseInt(clubId))
     // let finder = Club.all
     // let found = finder.find(c => c.id === newId)
     
-
-
-  
-  
-
-
     function addReviewButton() {
     reviewButton = document.querySelector(".button3")  
     reviewButton.addEventListener("click", function(e) {
       e.preventDefault()
       removeAddReviewButton()
       displayCommentForm()
-      
       }
       )
   }
@@ -187,16 +185,16 @@ function whichRadioButtonWasSelected(rating) {
   for(i = 0; i < rating.length; i++) { 
     if(rating[i].checked) 
    // console.log(rating[i].value)
-   return rating[i].value
+   return rating[i].value 
 }
 }
 
 function displayCommentForm() {  // 
 
   // leftPage.innerHTML += commentForm
-  let insertFormHere = document.querySelector(".insertform")
-  insertFormHere.innerHTML = commentForm
-  
+  // let insertFormHere = document.querySelector(".insertform")
+  // insertFormHere.innerHTML = commentForm
+  document.querySelector(".insertform").innerHTML = commentForm
 
   const getCommentFormButton = document.querySelector("#speak");
   getCommentFormButton.addEventListener("click", function(e) {
@@ -207,11 +205,9 @@ function displayCommentForm() {  //
   let venueComment = comment.value
   let starRating = whichRadioButtonWasSelected(rating)
   let venueId = document.querySelector(".soloclub").id
-
-
   Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
-  sendData(formData)
   
+  sendData(formData)
 })
 }
 
@@ -221,7 +217,11 @@ async function sendData(formData) {
     alert(postResponse.errors)
   } else { 
   // add new review to Clubs CLASS
-  addToClass(postResponse) }
+ // addToClass(postResponse)
+ console.log("line218 - b4")
+  let showUpdate = await renderClubs() 
+  showClubDetail(parseInt(postResponse.club_id))
+  console.log("line221 - after")}
 }
 
 function addToClass(newReview) {
@@ -232,12 +232,25 @@ function addToClass(newReview) {
     let clubReviews = Club.findClubById(newId).reviews
     clubReviews.push( {comments: newReview.comments, stars: newReview.stars} )
     showClubDetail(newId)
+    updateReviewsClass()
     rightPage.innerHTML = Club.renderAll()
 }
 
-function removeAddReviewButton() {
-  reviewButton.innerText = "" 
+// when new review added, generate new Reviews
+function updateReviewsClass() {
+  let clubs = Club.all
+  console.log('before', Review.all)
+  Review.all = []
+  for(club of clubs){
+      for (review of club.reviews){
+         new Review(review)}
+  }
+  console.log('after', Review.all)
 }
+
+const removeAddReviewButton = () => 
+  reviewButton.innerText = "" 
+
 
 function editReview(id) {
     let data = Review.all.find(review => review.id === parseInt(id))
@@ -269,8 +282,11 @@ async function editData(formData) {
     alert(postResponse.errors)
   } else { 
   // add new review to Clubs CLASS
-  updateLocally(postResponse)
-  clearForm() }
+ // updateLocally(postResponse)
+ console.log("line 283 -b4", postResponse.club_id)
+ let showUpdate = await renderClubs() 
+  showClubDetail(parseInt(postResponse.club_id))
+  console.log("line 286 - after")}
 }
 
 function updateLocally(postResponse) {
@@ -292,6 +308,7 @@ function updateLocally(postResponse) {
 
 
 function mountToCenterPage(info) {
+  debugger
   const reviews = info.reviews
   reviewArray = []
   for (review of reviews) {
