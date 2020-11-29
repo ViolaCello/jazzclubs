@@ -144,11 +144,11 @@ function toDisplayForm() {
   }
   
 const getClubDetails = clubId =>  Club.findClubById(parseInt(clubId))
-    // let newId = parseInt(clubId)
-    // let finder = Club.all
-    // let found = finder.find(c => c.id === newId)
+        // let newId = parseInt(clubId)
+        // let finder = Club.all
+        // let found = finder.find(c => c.id === newId)
     
-    function addReviewButton() {
+function addReviewButton() {
     reviewButton = document.querySelector(".button3")  
     reviewButton.addEventListener("click", function(e) {
       e.preventDefault()
@@ -184,103 +184,63 @@ const commentForm =
 function whichRadioButtonWasSelected(rating) {
   for(i = 0; i < rating.length; i++) { 
     if(rating[i].checked) 
-   // console.log(rating[i].value)
+         // console.log(rating[i].value)
    return rating[i].value 
-}
+  }
 }
 
-function displayCommentForm() {  // 
-
-  // leftPage.innerHTML += commentForm
-  // let insertFormHere = document.querySelector(".insertform")
-  // insertFormHere.innerHTML = commentForm
+function displayCommentForm() {  
   document.querySelector(".insertform").innerHTML = commentForm
-
   const getCommentFormButton = document.querySelector("#speak");
-  getCommentFormButton.addEventListener("click", function(e) {
-  e.preventDefault()
-
-  let formData = {}
-
-  let venueComment = comment.value
-  let starRating = whichRadioButtonWasSelected(rating)
-  let venueId = document.querySelector(".soloclub").id
-  Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
-  
+    getCommentFormButton.addEventListener("click", function(e) {
+     e.preventDefault()
+      let formData = {}
+      let venueComment = comment.value
+      let starRating = whichRadioButtonWasSelected(rating)
+      let venueId = document.querySelector(".soloclub").id
+    Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
   sendData(formData)
 })
 }
 
 async function sendData(formData) {
   let postResponse = await api.postReview(formData)
-  if (postResponse.errors) {
-    alert(postResponse.errors)
-  } else { 
-  // add new review to Clubs CLASS
- // addToClass(postResponse)
- console.log("line218 - b4")
-  let showUpdate = await renderClubs() 
-  showClubDetail(parseInt(postResponse.club_id))
-  console.log("line221 - after")}
+    if (postResponse.errors) {
+        alert(postResponse.errors)
+    } else { 
+              // get updated Club/Review info from the database
+       let showUpdate = await renderClubs() 
+       showClubDetail(parseInt(postResponse.club_id))
+    }
 }
 
-function addToClass(newReview) {
-  let newId = parseInt(newReview.club_id)
-    // let finder = Club.all
-    // let found = finder.find(c => c.id === newId)
-    // let clubReviews = found.reviews
-    let clubReviews = Club.findClubById(newId).reviews
-    clubReviews.push( {comments: newReview.comments, stars: newReview.stars} )
-    showClubDetail(newId)
-    updateReviewsClass()
-    rightPage.innerHTML = Club.renderAll()
-}
-
-// when new review added, generate new Reviews
-function updateReviewsClass() {
-  let clubs = Club.all
-  console.log('before', Review.all)
-  Review.all = []
-  for(club of clubs){
-      for (review of club.reviews){
-         new Review(review)}
-  }
-  console.log('after', Review.all)
-}
 
 const removeAddReviewButton = () => 
   reviewButton.innerText = "" 
 
-
 function editReview(id) {
     let data = Review.all.find(review => review.id === parseInt(id))
-    let insertFormHere = document.querySelector(".insertform")
-    insertFormHere.innerHTML = commentForm
-    let fillComment = document.querySelector('#comment')
-    fillComment.value=data.comments
+    document.querySelector(".insertform").innerHTML = commentForm
+    let fillComment = document.querySelector('#comment').value=data.comments
     let getCommentFormButton = document.querySelector("#speak");
-    getCommentFormButton.addEventListener("click", function(e) {
-      e.preventDefault()
+        getCommentFormButton.addEventListener("click", function(e) {
+         e.preventDefault()
      
-      let formData = {}
-    
-      let venueComment = comment.value
-      let starRating = whichRadioButtonWasSelected(rating)
-      let venueId = document.querySelector(".soloclub").id
-      
-    
+        let formData = {}
+        let venueComment = comment.value
+        let starRating = whichRadioButtonWasSelected(rating)
+        let venueId = document.querySelector(".soloclub").id
       Object.assign(formData, {id: parseInt(id)}, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
      
       editData(formData)
     })
   }
     
-
 async function editData(formData) {
   let postResponse = await api.editReview(formData)
-  if (postResponse.errors) {
-    alert(postResponse.errors)
-  } else { 
+    if (postResponse.errors) {
+          alert(postResponse.errors)
+    }   else { 
   // add new review to Clubs CLASS
  // updateLocally(postResponse)
  console.log("line 283 -b4", postResponse.club_id)
@@ -289,30 +249,11 @@ async function editData(formData) {
   console.log("line 286 - after")}
 }
 
-function updateLocally(postResponse) {
-  let newId = parseInt(postResponse.club_id)
-    // let finder = Club.all
-    // let found = finder.find(c => c.id === newId)
-    let club = Club.findClubById(newId).reviews
-    // let club = found.reviews
-    clubReviews = club.find(rev => rev.id===parseInt(postResponse.id))
-    clubReviews.comments = postResponse.comments
-    clubReviews.stars = postResponse.stars
-    showClubDetail(newId)
-    rightPage.innerHTML = Club.renderAll()
-}
-
-
-
-
-
-
 function mountToCenterPage(info) {
-  debugger
   const reviews = info.reviews
   reviewArray = []
-  for (review of reviews) {
-    reviewArray.push(review)
+    for (review of reviews) {
+      reviewArray.push(review)
       }
 
   let club_info = 
@@ -345,11 +286,49 @@ function mountToCenterPage(info) {
 }
 
 function editReviewButton() {
-document.querySelectorAll('.ebutton').forEach(button => {
-button.addEventListener("click", function(e) {
-  e.preventDefault()
-  let reviewID = e.target.id.split('edit')[1]
-  editReview(reviewID)
-})
-})
+  document.querySelectorAll('.ebutton').forEach(button => {
+    button.addEventListener("click", function(e) {
+      e.preventDefault()
+      let reviewID = e.target.id.split('edit')[1]
+      editReview(reviewID)
+    })
+  })
 }
+
+
+// function addToClass(newReview) {
+//   let newId = parseInt(newReview.club_id)
+//           // let finder = Club.all
+//           // let found = finder.find(c => c.id === newId)
+//           // let clubReviews = found.reviews
+//     let clubReviews = Club.findClubById(newId).reviews
+//     clubReviews.push( {comments: newReview.comments, stars: newReview.stars} )
+//     showClubDetail(newId)
+//     updateReviewsClass()
+//     rightPage.innerHTML = Club.renderAll()
+// }
+
+// when new review added, generate new Reviews
+// function updateReviewsClass() {
+//   let clubs = Club.all
+//   console.log('before', Review.all)
+//   Review.all = []
+//   for(club of clubs){
+//       for (review of club.reviews){
+//          new Review(review)}
+//   }
+//   console.log('after', Review.all)
+// }
+
+// function updateLocally(postResponse) {
+  //   let newId = parseInt(postResponse.club_id)
+  //     // let finder = Club.all
+  //     // let found = finder.find(c => c.id === newId)
+  //     let club = Club.findClubById(newId).reviews
+  //     // let club = found.reviews
+  //     clubReviews = club.find(rev => rev.id===parseInt(postResponse.id))
+  //     clubReviews.comments = postResponse.comments
+  //     clubReviews.stars = postResponse.stars
+  //     showClubDetail(newId)
+  //     rightPage.innerHTML = Club.renderAll()
+  // }
