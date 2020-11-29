@@ -294,31 +294,22 @@ function editReviewButton() {
   })
 }
 
-// delete a Club
-// pseudo code: 
-  // attach a DELETE CLUB button to the showClubDetails area
-  // get the Club_id
-  // delete the club via api request
-  // renderClubs()
   function deleteButtonListen() {
     deleteButton = document.querySelector(".button4")  
     deleteButton.addEventListener("click", function(e) {
       e.preventDefault()
       let venueId = document.querySelector(".soloclub").id
       deleteClubNow(parseInt(venueId))
-      }
-      )
+      })
   }
 
 async function deleteClubNow(id) {
   let postResponse = await api.deleteClub(id)
   if (postResponse.errors) {
         alert(postResponse.errors)
-  }   else { 
-let showUpdate = await renderClubs() 
-}
-
-
+    }   else { 
+      let showUpdate = await renderClubs() 
+    }
 }
 
 
