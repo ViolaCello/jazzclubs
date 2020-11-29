@@ -287,6 +287,15 @@ function updateLocally(postResponse) {
     clubReviews.comments = postResponse.comments
     clubReviews.stars = postResponse.stars
     showClubDetail(newId)
+    replaceClubOnDom(found.id)
+}
+
+
+
+
+function replaceClubOnDom(club) {
+  let clubId = Club.findClubById(club)
+  console.log(clubId)
 }
 
 function mountToCenterPage(info) {

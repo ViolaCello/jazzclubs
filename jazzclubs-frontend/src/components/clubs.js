@@ -60,4 +60,8 @@ static all = []
         `)
       }
 
+      static findClubById(id) {
+         return Club.all.find(c => c.id === id)
+      }
+
 }
