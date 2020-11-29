@@ -132,22 +132,19 @@ function toDisplayForm() {
     leftPage.innerHTML =  `<img src="jazzclubflorence.jpg">`
  }
 
-  
-  
-
- 
-  
-  function showClubDetail(id) {
+   
+ const showClubDetail = (id) => {
     let club = getClubDetails(id)
     mountToCenterPage(club)
   }
   
-function getClubDetails(clubId) {
+const getClubDetails = clubId =>  Club.findClubById(parseInt(clubId))
     // let newId = parseInt(clubId)
     // let finder = Club.all
     // let found = finder.find(c => c.id === newId)
-    return Club.findClubById(parseInt(clubId))
-}
+    
+
+
   
   
 
