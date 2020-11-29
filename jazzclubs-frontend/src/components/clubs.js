@@ -30,7 +30,7 @@ static all = []
 `)
       }
 
-     averageRating(){
+      averageRating(){
         let starsArray = []
         this.reviews.map(key => starsArray.push(key.stars))
         if (starsArray.length===0) {
@@ -40,6 +40,7 @@ static all = []
         let result = Math.round(number * 10) / 10     // make it only one decimal place
         return result }
       }
+
 
 
       static htmlifyAll(){
