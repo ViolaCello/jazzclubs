@@ -5,7 +5,6 @@ const api = new ApiService();
 
 const init = () =>{
   renderClubs()
-  
 }
 
 // DOM identifiers
@@ -20,10 +19,9 @@ async function renderClubs(){
       for (review of club.reviews){
          new Review(review)}
   }
-  rightPage.innerHTML = ""
+  // rightPage.innerHTML = ""
   rightPage.innerHTML = Club.renderAll()
   selectClubToView()
-  
 }
 
 
@@ -130,9 +128,10 @@ function toDisplayForm() {
     rightPage.innerHTML += club_info
   }
   
-  function clearForm() {
+ const clearForm = () => {
     leftPage.innerHTML =  `<img src="jazzclubflorence.jpg">`
-  }
+ }
+
   
   
 
@@ -140,7 +139,6 @@ function toDisplayForm() {
   
   function showClubDetail(id) {
     let club = getClubDetails(id)
-    console.log(club)
     mountToCenterPage(club)
   }
   

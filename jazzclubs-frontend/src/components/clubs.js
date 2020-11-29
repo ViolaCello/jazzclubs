@@ -45,7 +45,6 @@ static all = []
 
       static htmlifyAll(){
         // return a string template of all clubs in HTML format
-        // clear out index page Maybe
         return Club.all.map(club=> club.htmlify()).join("")
       }
 
