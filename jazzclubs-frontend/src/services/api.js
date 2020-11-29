@@ -33,7 +33,7 @@ class ApiService{
     }
 
     async editReview(data) {
-      const resp = await fetch(this.baseUrl+"/reviews", 
+      const resp = await fetch(this.baseUrl+"/reviews/"+data.id, 
       {...this.options, method: 'PATCH', body: JSON.stringify(data)})
       const response = await resp.json()
       return response

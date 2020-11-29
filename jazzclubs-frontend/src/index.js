@@ -117,7 +117,7 @@ function toDisplayForm() {
   }
   
   
-  function  addClubtoDOm(info) {
+  function addClubtoDOm(info) {
     let newClub = new Club(info)
     let club_info = 
     `
@@ -151,54 +151,9 @@ function getClubDetails(clubId) {
     let found = finder.find(c => c.id === newId)
     console.log(found)
     return found 
-
 }
   
-  function mountToCenterPage(info) {
-    const reviews = info.reviews
-    reviewArray = []
-    for (review of reviews) {
-      reviewArray.push(review)
-        }
-
-    let club_info = 
-    `
-      <div class="soloclub" id=${info.id}>
-      <p>${info.name}</p>
-      <br><u>Location</u>: ${info.location}</br>
-      <br><u>Cover Charge</u> $ ${info.cover}</br>
-      <br><a href=${info.website}  target="_blank">${info.website}</a>
-      <br><br>Average Rating: ${info.averageRating()}
-      <br><br><button type="button" id="addreview" class="button3">Add Review</button>
-      </div>
-      <div class="insertform"></div>
-      <div class="comments"><h3> Reviews:</h3>
-   
-      ${info.reviews.map(log => `<p><span> ${log.comments}
-      <button type="button" class="ebutton" id="edit${log.id}">Edit</button>
-      </span><br>
-      <span><b><i>Rating: ${log.stars}</i></b> </span><br></p>`).join("")}
-     
-      
-      </div>
-      
-      `
-      
-    leftPage.innerHTML = club_info
-
-    addReviewButton()
-    editReviewButton()
-  }
-
-function editReviewButton() {
- document.querySelectorAll('.ebutton').forEach(button => {
-  button.addEventListener("click", function(e) {
-    e.preventDefault()
-    let reviewID = e.target.id.split('edit')[1]
-    editReview(reviewID)
-  })
-  })
-}
+  
 
 
     function addReviewButton() {
@@ -306,7 +261,7 @@ function editReview(id) {
       let venueId = document.querySelector(".soloclub").id
       
     
-      Object.assign(formData, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
+      Object.assign(formData, {id: parseInt(id)}, {stars:starRating}, {comments:venueComment}, {club_id: parseInt(venueId)})
      
       editData(formData)
     })
@@ -319,7 +274,63 @@ async function editData(formData) {
     alert(postResponse.errors)
   } else { 
   // add new review to Clubs CLASS
-  //addToClass(postResponse) }
+  updateLocally(postResponse)
+  clearForm() }
 }
 
-  }
+function updateLocally(postResponse) {
+  let newId = parseInt(postResponse.club_id)
+    let finder = Club.all
+    let found = finder.find(c => c.id === newId)
+    let club = found.reviews
+    clubReviews = club.find(rev => rev.id===parseInt(postResponse.id))
+    clubReviews.comments = postResponse.comments
+    clubReviews.stars = postResponse.stars
+    showClubDetail(newId)
+}
+
+function mountToCenterPage(info) {
+  const reviews = info.reviews
+  reviewArray = []
+  for (review of reviews) {
+    reviewArray.push(review)
+      }
+
+  let club_info = 
+  `
+    <div class="soloclub" id=${info.id}>
+    <p>${info.name}</p>
+    <br><u>Location</u>: ${info.location}</br>
+    <br><u>Cover Charge</u> $ ${info.cover}</br>
+    <br><a href=${info.website}  target="_blank">${info.website}</a>
+    <br><br>Average Rating: ${info.averageRating()}
+    <br><br><button type="button" id="addreview" class="button3">Add Review</button>
+    </div>
+    <div class="insertform"></div>
+    <div class="comments"><h3> Reviews:</h3>
+ 
+    ${info.reviews.map(log => `<p><span> ${log.comments}
+    <button type="button" class="ebutton" id="edit${log.id}">Edit</button>
+    </span><br>
+    <span><b><i>Rating: ${log.stars}</i></b> </span><br></p>`).join("")}
+   
+    
+    </div>
+    
+    `
+    
+  leftPage.innerHTML = club_info
+
+  addReviewButton()
+  editReviewButton()
+}
+
+function editReviewButton() {
+document.querySelectorAll('.ebutton').forEach(button => {
+button.addEventListener("click", function(e) {
+  e.preventDefault()
+  let reviewID = e.target.id.split('edit')[1]
+  editReview(reviewID)
+})
+})
+}
