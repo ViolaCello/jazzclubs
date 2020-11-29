@@ -139,15 +139,11 @@ function toDisplayForm() {
    
  const showClubDetail = (id) => {
     let club = getClubDetails(id)
-    debugger
     mountToCenterPage(club)
   }
   
 const getClubDetails = clubId =>  Club.findClubById(parseInt(clubId))
-        // let newId = parseInt(clubId)
-        // let finder = Club.all
-        // let found = finder.find(c => c.id === newId)
-    
+      
 function addReviewButton() {
     reviewButton = document.querySelector(".button3")  
     reviewButton.addEventListener("click", function(e) {

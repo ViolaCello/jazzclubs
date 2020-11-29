@@ -10,5 +10,4 @@ class Review {
         Review.all.push(this)
     }
     
-
 }
