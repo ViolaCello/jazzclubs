@@ -25,11 +25,12 @@ There are two models in the database:
   Clubs in which there is a :has_many relation ship with Reviews (where the Reviews :belongs_to the Club).
   
  All interactions between the client and the server are handled asynchronously (AJAX) and use JSON as the communication format.
-  -- There are four (4) AJAX calls to the backend database using fetch()
+  -- There are four (5) AJAX calls to the backend database using fetch()
     1) The first of these is handled upon loading.  There is a GET request to the ClubsController Index route which returns, in JSON format, all of the Club.all information AND nested within this, is also the Reviews which belong to each Club.
     2) There is a POST request to the ClubsController Create route which instantiates a new Club into the database on the backend, which, once the information is returned, a new instance of the Club Object is created in the Club Class in JavaScript to keep the user experience flowing and as to not have to send another fetch() GET request to the database
     3) There is a POST request to the ReviewsController Create route which instantiates a new Review once a user submits a comments form.  The club_id is taken from the information on the DOM and sent to the database with the appropriate club_id for proper identification.  It is then added to the pre-existing Club Object in the JavaScript Club class
     4) There is a PATCH request to the ReviewsController so that the user can edit a comment and/or rating
+    5) There is a DELETE request to the ClubsController to delete a specific club.  Before actually deleting the Club, it goes to the Reviews model to delete all Reviews that are associated with the Club first, then deletes the club.
     
  The JavaScript application uses Object Oriented JavaScript (classes) to encapsulate related data and behavior.
     This includes constructing a new instance of Club upon rendering the Clubs already in the database, as well as when a user creates one in real-time
