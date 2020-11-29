@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
           end
       end
     
-      def delete
+      def destroy
         clb = Club.find_by_id(params[:id])
         remove = Review.purge_by_id(clb.id)
         clb.delete

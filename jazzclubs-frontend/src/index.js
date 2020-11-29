@@ -259,7 +259,11 @@ function mountToCenterPage(info) {
     <br><a href=${info.website}  target="_blank">${info.website}</a>
     <br><br>Average Rating: ${info.averageRating()}
     <br><br><button type="button" id="addreview" class="button3">Add Review</button>
+    <br><br><button type="button" id="deleteclub" class="button4">Delete Club</button>
     </div>
+
+      
+
     <div class="insertform"></div>
     <div class="comments"><h3> Reviews:</h3>
  
@@ -288,6 +292,14 @@ function editReviewButton() {
     })
   })
 }
+
+// delete a Club
+// pseudo code: 
+  // attach a DELETE CLUB button to the showClubDetails area
+  // get the Club_id
+  // delete the club via api request
+  // renderClubs()
+
 
 
 // function addToClass(newReview) {
