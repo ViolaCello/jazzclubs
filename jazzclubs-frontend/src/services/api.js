@@ -39,9 +39,9 @@ class ApiService{
       return response
     }
     
-    async deleteClub(data) {
-      const resp = await fetch(this.baseUrl+"/clubs/"+data.id, 
-      {...this.options, method: 'DELETE', body: JSON.stringify(data)})
+    async deleteClub(id) {
+      const resp = await fetch(this.baseUrl+"/clubs/"+id, 
+      {...this.options, method: 'DELETE'})
       const response = await resp.json()
       return response
     }
